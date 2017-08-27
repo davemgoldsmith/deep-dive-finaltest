@@ -24,11 +24,20 @@ private static final String DAT_BUNDLE = "resources/test-input.dat";
 		//test to verify input of line
 		System.out.println(Arrays.toString(data[0]));
 		
-		
+		double minFound;
 		int arrayCounter = 0;
 		for ( Float[] shuffleLine: data ) {
 			Collections.shuffle(Arrays.asList(shuffleLine));
 			arrayCounter +=1;
+			Collections.sort(Arrays.asList(shuffleLine));
+			minFound = Collections.min(Arrays.asList(shuffleLine));
+			
+			// test to find out minimum
+			System.out.println(minFound);
+			
+			
+			
+			
 			
 			
 			

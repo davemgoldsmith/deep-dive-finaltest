@@ -15,6 +15,7 @@ import java.util.LinkedList;
 	public DataReader(String file) {
 		//File dataReader = new File(file);
 		
+		
 		try (
 									
 				FileReader reader = new FileReader(file);
