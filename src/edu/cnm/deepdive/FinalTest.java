@@ -1,5 +1,6 @@
 package edu.cnm.deepdive;
 
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -15,6 +16,7 @@ import java.util.ResourceBundle;
 public class FinalTest {
 
 	private static final String DAT_BUNDLE = "resources/test-input.dat";
+	private static final String DATA_OUTPUT = "resources/test-output.dat";
 
 	public static void main(String[] args) {
 
@@ -46,7 +48,6 @@ public class FinalTest {
 		// test display number of lines in the outer array
 		// System.out.println(arrayCounter);
 
-		
 		// Sort collection
 		Arrays.asList(data).sort((arr1, arr2) ->
 
@@ -60,26 +61,35 @@ public class FinalTest {
 			}
 		});
 
-		
+		writeShuffled(DATA_OUTPUT, data);
 	}
-	
-	private static void writeShuffled (String filename, Float[][] shuffled) { 
-		
-		try(
-			FileOutputStream stream = new FileOutputStream(filename);
-			OutputStreamWriter writer = new OutputStreamWriter(stream);
-			PrintWriter printer = new PrintWriter(writer);
-			) {
-			for (Float[] writeShuffledArray : shuffled){
-				printer.println(writeShuffledArray);
-			}
-				
-		} catch (IOException ex) {
+
+	public static void writeShuffled(String DATA_OUTPUT, Float[][] shuffled) {
+
+		try (FileOutputStream stream = new FileOutputStream(DATA_OUTPUT);
+				OutputStreamWriter writer = new OutputStreamWriter(stream);
+				PrintWriter printer = new PrintWriter(writer);) {
+			for (Float[] writeShuffledArray : shuffled) {
+				int i = 1;
+				for (Float number : writeShuffledArray) {
+					if (i++ == writeShuffledArray.length) {
+						printer.printf("%.3f", number);
+					} else {
+						printer.printf("%.3f|", number);
+					} // else
+				} // for inner
+				printer.println();
+			} // for outer
+		} // try
+		catch (FileNotFoundException ex) {
 			ex.printStackTrace();
 			throw new RuntimeException(ex);
-}
-	
-	
-}
+		} // catch
+		catch (IOException ex) {
+			ex.printStackTrace();
+			throw new RuntimeException(ex);
+		} // catch
 
-}
+	} // writeShuffled method
+
+} //FinalTest class
