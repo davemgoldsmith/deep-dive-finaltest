@@ -25,7 +25,9 @@ public class FinalTest {
 
 		// test to verify input of line
 		// System.out.println(Arrays.toString(data[0]));
-
+		
+		
+		// test variable to fine minimum
 		// double minFound;
 
 		// test counter
@@ -62,16 +64,26 @@ public class FinalTest {
 		});
 
 		writeShuffled(DATA_OUTPUT, data);
-	}
-
+	} //main method
+	
+	
+	
+	//method to write to output file
 	public static void writeShuffled(String DATA_OUTPUT, Float[][] shuffled) {
+		
+		//variables to compute average
+		float counter = 0.0f;
+		float sum = 0.0f;
 
 		try (FileOutputStream stream = new FileOutputStream(DATA_OUTPUT);
 				OutputStreamWriter writer = new OutputStreamWriter(stream);
 				PrintWriter printer = new PrintWriter(writer);) {
 			for (Float[] writeShuffledArray : shuffled) {
 				int i = 1;
+				
 				for (Float number : writeShuffledArray) {
+					counter ++;
+					sum += number;
 					if (i++ == writeShuffledArray.length) {
 						printer.printf("%.3f", number);
 					} else {
@@ -80,7 +92,10 @@ public class FinalTest {
 				} // for inner
 				printer.println();
 			} // for outer
+			float average = (sum / counter);			
+			printer.print(average);
 		} // try
+		
 		catch (FileNotFoundException ex) {
 			ex.printStackTrace();
 			throw new RuntimeException(ex);
@@ -88,8 +103,8 @@ public class FinalTest {
 		catch (IOException ex) {
 			ex.printStackTrace();
 			throw new RuntimeException(ex);
-		} // catch
-
+		} // catch		
+		
 	} // writeShuffled method
 
 } //FinalTest class
