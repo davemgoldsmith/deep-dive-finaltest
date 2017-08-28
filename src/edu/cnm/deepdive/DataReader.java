@@ -36,7 +36,8 @@ import java.util.LinkedList;
 				list = work.toArray(new Float [0][]);
 				
 			} catch (NumberFormatException ex) {
-				
+				// TODO Auto-generated catch block
+				ex.printStackTrace();
 			} catch (FileNotFoundException ex) {
 				// TODO Auto-generated catch block
 				ex.printStackTrace();
